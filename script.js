@@ -6,73 +6,68 @@ const textoResultado = document.querySelector(".texto-resultado");
 
 const perguntas = [
     {
-        enunciado: "Assim que saiu da escola você se depara com uma nova tecnologia, um chat que consegue responder todas as dúvidas que uma pessoa pode ter, ele também gera imagens e áudios hiper-realistas. Qual o primeiro pensamento?",
+        enunciado: "Durante as enchentes no Rio Grande do Sul, a água começa a subir perto da sua casa. O que você faz primeiro?",
         alternativas: [
             {
-                texto: "Isso é assustador!",
-                afirmacao: "afirmacao"
+                texto: "Vou para um local alto e seguro e aviso os serviços de emergência, sem entrar na água.",
+                afirmacao: "Você busca um local alto e seguro e avisa os serviços de emergência, sem se arriscar na água."
             },
             {
-                texto: "Isso é maravilhoso!",
-                afirmacao: "afirmacao"
-            }           
-            
-        ]
-    },
-    {
-        enunciado: "Com a descoberta desta tecnologia, chamada Inteligência Artificial (IA), uma professora de tecnologia da escola decidiu fazer uma sequência de aulas sobre elaIA. No fim de uma aula ela pede que você escreva um trabalho sobre o uso de tecnologia em sala de aula. Qual atitude você toma?",
-        alternativas: [
-            {
-                texto:"Utilizar uma ferramenta de busca na internet que utiliza IA para que ela ajude a encontrar informações relevantes para o trabalho e explique numa linguagem que facilite o entendimento",
-                afirmacao:"afirmacao"
-            },
-            {
-                texto: "Escrever o trabalho com base nas conversas que teve com colegas, algumas pesquisas na internet e conhecimentos próprios sobre o tema.",
-                afirmacao:"afirmacao"
+                texto: "Tento atravessar a área alagada para chegar mais rápido a outro lugar.",
+                gameOver: "A correnteza e perigos escondidos tornam a travessia muito arriscada. Você precisará ser resgatado. Em uma enchente, não atravesse áreas alagadas."
             }
         ]
     },
     {
-        enunciado: "Após a elaboração do trabalho, a professora realizou um debate entre a turma para entender como foi realizada a pesquisa e escrita. Nessa conversa também foi levantado um ponto muito importante: como a IA impacta o trabalho do futuro. Nesse debate, como você se posiciona?",
+        enunciado: "Já em segurança, você vê uma família ilhada pedindo ajuda. Como pode contribuir?",
         alternativas: [
             {
-                texto:"Me preocupo com as pessoas que perderão seus empregos para máquinas e defendem a importância de proteger os trabalhadores.",
-                afirmacao:"afirmacao"
+                texto: "Informo a localização aos bombeiros ou à Defesa Civil e aguardo as equipes preparadas.",
+                afirmacao: "Ao avistar uma família ilhada, você informa a localização aos bombeiros ou à Defesa Civil e aguarda uma equipe preparada para o resgate."
             },
             {
-                texto:"Defende a ideia de que a IA pode criar novas oportunidades de emprego e melhorar habilidades humanas.",
-                afirmacao:"afirmacao"
+                texto: "Entro na água para tentar resgatá-la por conta própria.",
+                gameOver: "A tentativa de resgate coloca você e a família em perigo. O resgate deve ser feito por equipes preparadas: avise os bombeiros ou a Defesa Civil."
             }
-            
         ]
     },
     {
-        enunciado: "Ao final da discussão, você precisou criar uma imagem no computador que representasse o que pensa sobre IA. E agora?",
+        enunciado: "No abrigo, uma pessoa está preocupada porque não consegue falar com parentes. O que você faz?",
         alternativas: [
             {
-                texto:"Criar uma imagem utilizando uma plataforma de design como o Paint.",
-                afirmacao:"afirmacao"
+                texto: "Escuto com calma e ajudo a buscar informações por canais oficiais.",
+                afirmacao: "No abrigo, você escuta essa pessoa com atenção e ajuda a procurar notícias por canais oficiais, sem compartilhar informações não confirmadas."
             },
             {
-                texto:"Criar uma imagem utilizando um gerador de imagem de IA.",
-                afirmacao:"afirmacao"
+                texto: "Compartilho nas redes qualquer notícia que encontrar para tentar ajudar.",
+                feedback: "Antes de compartilhar, confirme a informação em canais oficiais. Notícias falsas podem atrapalhar o resgate. Tente escolher outra atitude."
             }
-            
         ]
     },
     {
-        enunciado: " Você tem um trabalho em grupo de biologia para entregar na semana seguinte, o andamento do trabalho está um pouco atrasado e uma pessoa do seu grupo decidiu fazer com ajuda de uma IA. O problema é que o trabalho está totalmente igual ao do chat. O que você faz?",
+        enunciado: "As equipes pedem apoio para organizar doações. Qual atitude ajuda mais?",
         alternativas: [
             {
-                texto: "O chat pode ser uma tecnologia muito avançada, mas é preciso manter a atenção pois toda máquina erra, por isso revisar o trabalho e contribuir com as perspectivas pessoais é essencial.",
-                afirmacao:"afirmacao"
+                texto: "Pergunto ao abrigo quais itens são necessários e ajudo a separar e distribuir as doações.",
+                afirmacao: "Você pergunta ao abrigo quais itens são necessários e ajuda a organizar as doações com cuidado e respeito."
             },
             {
-                texto: "Escrever comandos para o chat é uma forma de contribuir com o trabalho, por isso não é um problema utilizar o texto inteiro.",
-                afirmacao:"afirmacao"
+                texto: "Levo qualquer tipo de doação, sem verificar o que está sendo pedido.",
+                feedback: "Doações que não são necessárias podem sobrecarregar o abrigo. Pergunte quais itens estão sendo solicitados e tente novamente."
             }
-            
-            
+        ]
+    },
+    {
+        enunciado: "Depois que a água baixa, a comunidade começa a se reorganizar. Como você continua ajudando?",
+        alternativas: [
+            {
+                texto: "Sigo as orientações das autoridades e participo de ações comunitárias seguras.",
+                afirmacao: "Quando a água baixa, você segue as orientações das autoridades e participa de ações comunitárias seguras para apoiar a recuperação."
+            },
+            {
+                texto: "Volto imediatamente para casa, mesmo sem saber se o local está seguro.",
+                feedback: "A casa pode estar danificada ou ainda oferecer riscos. Aguarde a liberação das autoridades antes de voltar e tente escolher outra atitude."
+            }
         ]
     },
 ];
@@ -89,6 +84,7 @@ function mostraPergunta() {
     perguntaAtual = perguntas[atual];
     caixaPerguntas.textContent = perguntaAtual.enunciado;
     caixaAlternativas.textContent = "";
+    textoResultado.textContent = "";
     mostraAlternativas();
 }
 
@@ -102,16 +98,58 @@ function mostraAlternativas(){
 }
 
 function respostaSelecionada(opcaoSelecionada){
+    if(opcaoSelecionada.gameOver){
+        mostraGameOver(opcaoSelecionada.gameOver);
+        return;
+    }
+
+    if(opcaoSelecionada.feedback){
+        mostraFeedback(opcaoSelecionada.feedback);
+        return;
+    }
+
     const afirmacoes = opcaoSelecionada.afirmacao;
     historiaFinal += afirmacoes + " ";
     atual++;
     mostraPergunta();
 }
 
+function mostraFeedback(mensagem){
+    textoResultado.textContent = mensagem;
+    caixaAlternativas.textContent = "";
+
+    const botaoTentarNovamente = document.createElement("button");
+    botaoTentarNovamente.textContent = "Voltar e escolher outra resposta";
+    botaoTentarNovamente.addEventListener("click", mostraPergunta);
+    caixaAlternativas.appendChild(botaoTentarNovamente);
+}
+
+function mostraGameOver(mensagem){
+    caixaPerguntas.textContent = "Game Over";
+    textoResultado.textContent = mensagem;
+    caixaAlternativas.textContent = "";
+    mostraBotaoReiniciar();
+}
+
 function mostraResultado(){
-    caixaPerguntas.textContent = "Em 2049...";
+    caixaPerguntas.textContent = "Cada atitude segura pode fazer a diferença.";
     textoResultado.textContent = historiaFinal;
-    caixaAlternativas.textContent = ""; 
+    caixaAlternativas.textContent = "";
+    mostraBotaoReiniciar();
+}
+
+function mostraBotaoReiniciar(){
+    const botaoReiniciar = document.createElement("button");
+    botaoReiniciar.textContent = "Jogar novamente";
+    botaoReiniciar.addEventListener("click", reiniciarJogo);
+    caixaAlternativas.appendChild(botaoReiniciar);
+}
+
+function reiniciarJogo(){
+    atual = 0;
+    historiaFinal = "";
+    textoResultado.textContent = "";
+    mostraPergunta();
 }
 
 mostraPergunta();
