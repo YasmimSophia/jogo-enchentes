@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -8,11 +8,27 @@
 </head>
 <body>
     <div class="caixa-principal">
-        <h1>Você decide o futuro do Rio Grande do Sul</h1>
-        <div class="caixa-perguntas"></div>
-        <div class="caixa-alternativas"></div>
-        <div class="caixa-resultado">
-            <p class="texto-resultado"></p>
+        <div class="tela-inicial">
+            <h1>Você decide o futuro do Rio Grande do Sul</h1>
+            <p class="intro">
+                As enchentes mudaram a vida de muita gente no Rio Grande do Sul.
+                Nesta jornada, cada decisão sua pode proteger vidas, ou colocá-las em risco.
+                Escolha com cuidado.
+            </p>
+            <label class="label-inicial" for="nome-jogador">Digite seu nome</label>
+            <input id="nome-jogador" type="text" maxlength="30" placeholder="Seu nome" autocomplete="off" />
+            <p id="erro-nome" class="erro oculto" role="alert">Por favor, digite seu nome para começar.</p>
+            <button id="botao-comecar" type="button">Começar a jornada</button>
+        </div>
+ 
+        <div class="jogo oculto">
+            <h2>Jornada de <span id="nome-usuario">Jogador</span></h2>
+            <p id="progresso" class="progresso"></p>
+            <div class="caixa-perguntas"></div>
+            <div class="caixa-alternativas"></div>
+            <div class="caixa-resultado">
+                <p class="texto-resultado"></p>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>
