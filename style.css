@@ -127,9 +127,26 @@ button:focus-visible {
     margin-top: 20px;
 }
 
+.caixa-resultado button,
+.tela-creditos button {
+    width: 100%;
+    margin-top: 12px;
+    text-align: center;
+}
+
+.tela-creditos {
+    text-align: center;
+    line-height: 1.6;
+}
+
+.tela-creditos p {
+    margin: 12px 0;
+}
+
 .texto-resultado {
     font-size: 1.05rem;
     line-height: 1.6;
+    white-space: pre-line;
 }
 
 .texto-resultado:not(:empty) {

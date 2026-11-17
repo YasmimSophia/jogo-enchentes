@@ -7,7 +7,13 @@ const nomeUsuario = document.querySelector("#nome-usuario");
 const progresso = document.querySelector("#progresso");
 const caixaPerguntas = document.querySelector(".caixa-perguntas");
 const caixaAlternativas = document.querySelector(".caixa-alternativas");
+const caixaResultado = document.querySelector(".caixa-resultado");
+const tituloResultado = document.querySelector(".titulo-resultado");
 const textoResultado = document.querySelector(".texto-resultado");
+const botaoJogarNovamente = document.querySelector(".novamente-btn");
+const botaoCreditos = document.querySelector(".creditos-btn");
+const telaCreditos = document.querySelector(".tela-creditos");
+const botaoVoltarInicio = document.querySelector(".voltar-inicio-btn");
  
 /*
   Tipos de alternativa:
@@ -278,6 +284,7 @@ let atual = 0;
 let perguntaAtual;
 let historiaFinal = "";
 let nomeJogador = "";
+let faseDaPartida = "inicio";
  
 function embaralhar(lista) {
     const copia = [...lista];
@@ -306,11 +313,24 @@ function iniciaJogo() {
 function reiniciarJogo() {
     atual = 0;
     historiaFinal = "";
+    faseDaPartida = "jogando";
+    telaCreditos.classList.add("oculto");
+    caixaPerguntas.style.display = "";
+    caixaAlternativas.style.display = "";
+    botaoJogarNovamente.classList.add("oculto");
+    botaoCreditos.classList.add("oculto");
     mostraPergunta();
 }
  
 function voltaAoInicio() {
+    atual = 0;
+    historiaFinal = "";
+    faseDaPartida = "inicio";
+    limpaTela();
+    caixaPerguntas.textContent = "";
+    progresso.textContent = "";
     jogo.classList.add("oculto");
+    telaCreditos.classList.add("oculto");
     telaInicial.classList.remove("oculto");
     inputNome.value = nomeJogador;
     inputNome.focus();
@@ -318,8 +338,12 @@ function voltaAoInicio() {
  
 function limpaTela() {
     caixaAlternativas.textContent = "";
+    tituloResultado.textContent = "";
     textoResultado.textContent = "";
     textoResultado.classList.remove("game-over");
+    caixaResultado.classList.add("oculto");
+    botaoJogarNovamente.classList.add("oculto");
+    botaoCreditos.classList.add("oculto");
 }
  
 function mostraPergunta() {
@@ -376,38 +400,62 @@ function criaBotao(texto, aoClicar, secundario = false) {
 function mostraCaminhoCorreto(caminho) {
     limpaTela();
     textoResultado.textContent = caminho.mensagem;
+    caixaResultado.classList.remove("oculto");
     criaBotao("Seguir pelo caminho correto", () => avancar(caminho.afirmacao));
 }
  
 function mostraFeedback(mensagem) {
     limpaTela();
+    faseDaPartida = "gameover";
+    progresso.textContent = "";
+    caixaPerguntas.textContent = "";
+    caixaAlternativas.style.display = "none";
+    tituloResultado.textContent = "GAME OVER";
     textoResultado.textContent = mensagem;
-    caixaPerguntas.textContent = "Você tomou uma decisão perigosa. A jornada termina aqui.";
-    criaBotoesFinais();
+    textoResultado.classList.add("game-over");
+    caixaResultado.classList.remove("oculto");
+    botaoJogarNovamente.classList.remove("oculto");
 }
  
 function mostraGameOver(mensagem) {
     limpaTela();
+    faseDaPartida = "gameover";
     progresso.textContent = "";
-    caixaPerguntas.textContent = "Game Over";
+    caixaPerguntas.textContent = "";
+    caixaAlternativas.style.display = "none";
+    tituloResultado.textContent = "GAME OVER";
     textoResultado.textContent = mensagem;
     textoResultado.classList.add("game-over");
-    criaBotoesFinais();
+    caixaResultado.classList.remove("oculto");
+    botaoJogarNovamente.classList.remove("oculto");
 }
  
 function mostraResultado() {
     limpaTela();
+    faseDaPartida = "vitoria";
     progresso.textContent = "";
-    caixaPerguntas.textContent = "Cada atitude segura pode fazer a diferença.";
-    textoResultado.textContent = `Parabéns, ${nomeJogador}! ${historiaFinal.trim()}`;
-    criaBotoesFinais();
+    caixaPerguntas.textContent = "";
+    caixaAlternativas.style.display = "none";
+    tituloResultado.textContent = "THE END";
+    textoResultado.textContent =
+        `Parabéns, ${nomeJogador}! Cada atitude segura pode fazer a diferença.\n\nSeu percurso nesta partida:\n${historiaFinal.trim()}`;
+    caixaResultado.classList.remove("oculto");
+    botaoCreditos.classList.remove("oculto");
 }
  
-function criaBotoesFinais() {
-    criaBotao("Jogar novamente", reiniciarJogo);
-    criaBotao("Voltar ao início", voltaAoInicio, true);
+function mostraCreditos() {
+    if (faseDaPartida !== "vitoria") {
+        return;
+    }
+
+    faseDaPartida = "creditos";
+    jogo.classList.add("oculto");
+    telaCreditos.classList.remove("oculto");
 }
  
+botaoJogarNovamente.addEventListener("click", reiniciarJogo);
+botaoCreditos.addEventListener("click", mostraCreditos);
+botaoVoltarInicio.addEventListener("click", voltaAoInicio);
 botaoComecar.addEventListener("click", iniciaJogo);
 inputNome.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
