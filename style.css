@@ -123,6 +123,11 @@ button:focus-visible {
     gap: 12px;
 }
 
+.caixa-alternativas button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 .caixa-resultado {
     margin-top: 20px;
 }

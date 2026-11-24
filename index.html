@@ -4,21 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Você decide o futuro do Rio Grande do Sul</title>
+    <title>Você decide como agir nas enchentes</title>
 </head>
 <body>
     <div class="caixa-principal">
         <div class="tela-inicial">
-            <h1>Você decide o futuro do Rio Grande do Sul</h1>
+            <h1>Você decide como agir nas enchentes</h1>
             <p class="intro">
-                As enchentes mudaram a vida de muita gente no Rio Grande do Sul.
-                Nesta jornada, cada decisão sua pode proteger vidas, ou colocá-las em risco.
-                Escolha com cuidado.
+                A previsão indica chuva intensa e há risco de enchentes na região.
+                Suas escolhas podem ajudar você e sua comunidade a se preparar,
+                buscar informações confiáveis e agir com segurança.
             </p>
             <label class="label-inicial" for="nome-jogador">Digite seu nome</label>
             <input id="nome-jogador" type="text" maxlength="30" placeholder="Seu nome" autocomplete="off" />
             <p id="erro-nome" class="erro oculto" role="alert">Por favor, digite seu nome para começar.</p>
-            <button id="botao-comecar" type="button">Começar a jornada</button>
+            <button id="botao-comecar" class="iniciar-btn" type="button">Começar a jornada</button>
         </div>
  
         <div class="jogo oculto">
@@ -36,7 +36,7 @@
 
         <section class="tela-creditos oculto" aria-labelledby="titulo-creditos">
             <h2 id="titulo-creditos">Créditos</h2>
-            <p><strong>Jogo:</strong> Você decide o futuro do Rio Grande do Sul</p>
+            <p><strong>Jogo:</strong> Você decide como agir nas enchentes</p>
             <p><strong>Roteiro e programação:</strong> Yasmim Sophia e Alana Luz</p>
             <p><strong>Turma:</strong> 3º ano do Ensino Médio</p>
             <p><strong>Escola:</strong> Colégio Estadual do Paraná</p>
@@ -47,6 +47,6 @@
             <button class="voltar-inicio-btn" type="button">Voltar à tela inicial</button>
         </section>
     </div>
-    <script src="script.js"></script>
+    <script type="module" src="js/script.js"></script>
 </body>
 </html>
